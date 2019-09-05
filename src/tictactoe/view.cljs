@@ -19,60 +19,19 @@
      [:p (str "O score: " o)]]))
 
 
-(defn who-win?
-  [data]
-  (let [n (count data) fdata (flatten data)
-        sknario (concat
-                 data
-                 (apply map vector data)
-                 [(map #(nth fdata %) (range 0 (* n n) (inc n)))]
-                 [(map #(nth fdata %) (range (dec n) (- (* n n) (- n 1)) (dec n)))])]
-    (->> sknario
-         (filter (fn [a] (apply = a)))
-         flatten
-         (some #{:x :o}))))
-
- 
-
-(defn game-status-view
-  []
-  [:div#game-status
-   (let [st @(subscribe [::subs/game-status])]
-     (cond
-       (= :x st) "X WIN!!"
-       (= :o st)  "O WIN!!"
-       (= "draw" st) "DRAW!!"
-       :else #()))])
-
-(defn board-view
-  []
-  (let [size @(subscribe [::subs/board-size])
-        cell (fn [disp sub] [:div {:on-click (if (= :e @(subscribe sub))
-                                              #(dispatch disp) false)}
-                            (if (not= :e @(subscribe sub)) @(subscribe sub) "")])
-        content (fn [p] (for [x (range size)
-                             y (range size)]
-                         [p x y]))]
+(defn board-view5 []
+  (let [cell #(subscribe [::subs/board-cell %1 %2])
+        size @(subscribe [::subs/board-size])]
     (into [:div#content]
           (map
-           #(cell % %2)
-           (content ::events/change-board-cell)
-           (content ::subs/board-cell)))))
+           (fn [[i j]] [:div
+                       {:on-click (if (= :e @(cell i j))
+                                    #(dispatch [::events/change-board-cell i j])
+                                    false)}
+                       (when-not (= :e @(cell i j)) @(cell i j))])
 
-(defn tictactoe-view
-  []
-  (let [board @(subscribe [::subs/board])
-        winner? (who-win? board)]
-    (cond
-      winner? (do (dispatch [::events/change-game-status winner?])
-                  (dispatch [::events/change-player-score winner?])
-                  [game-status-view])
+           (for [i (range size)
+                 j (range size)]
+             [i j])))))
 
-      (nil? (some #(= :e %) (flatten board))) (do (dispatch [::events/change-game-status "draw"])
-                                                  [game-status-view])
-
-      :else [board-view])))
-
-
-
-
+ 

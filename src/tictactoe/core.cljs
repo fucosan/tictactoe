@@ -14,8 +14,11 @@
    [:h4 "tictactoe"]
    [view/score-view]
    [view/restart-game-view]
-   [view/tictactoe-view]])
-
+   ;[view/board-view]
+   ;[view/board-view2]
+   ;[view/board-view3]
+   ;[view/board-view4]
+   [view/board-view5]])
 
 
 (rf/dispatch [::events/intialize-game])

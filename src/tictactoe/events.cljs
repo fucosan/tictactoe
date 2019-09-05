@@ -6,6 +6,7 @@
  ::intialize-game
  (fn [_ _]
    game-db))
+
 (reg-event-db
  ::restart-game
  (fn [db]
@@ -13,6 +14,7 @@
                          [:e :e :e]
                          [:e :e :e]])
        (#(assoc % :player-turn (game-db :player-turn))))))
+
 (reg-event-db
  ::change-board-size
  (fn [db [_ size]]
