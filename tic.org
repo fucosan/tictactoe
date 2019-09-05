@@ -1,0 +1,53 @@
+* TODO knowledge requirement chains [7/7] [100%]
+- [X] grid in html and css 
+- [X] clickable div
+- [X] paths link html and css without server
+- [X] paths link html and css with server [2/2] [100%]
+  - [X] no cljs
+  - [X] with cljs
+- [X] disable onclick
+- [X] re-frame dispatch multiple event
+- [X] requirement for make complete and functional main function
+  - [X] render function
+  - [X] mount function? (what is this?)
+  - [X] meta data in clojure
+
+
+* TODO for create tictactoe cljs app [4/6] [66%]
+- [X] create project using cli [5/5] [100%]
+  - [X] deps.edn
+  - [X] dev.cljs.edn
+  - [X] fighweel-main.edn
+  - [X] src/projectname/core.cljs
+  - [X] resources/public/   index.html and css/style.css
+- [X] desain schema [2/2] [100%] 
+  - [X] data state
+    - [X] board matriks mxm
+    - [X] board size mxm
+    - [X] game status playing/:o win/ x win/draw
+    - [X] player turn o/x
+    - [X] player score
+  - [X] subscribe / query data state/ regeister subscribe [6/6] [100%]
+    - [X] board
+    - [X] board cell
+    - [X] player turn
+    - [X] player scores
+    - [X] game status playing/:o win/x win/draw
+    - [X] board size
+- [X] event handlers [6/6] [100%]
+  - [X] start/restart/intialize game state including board, player turn and score
+  - [X] change board cell
+  - [X] change player turn
+  - [X] change player score
+  - [X] change game status
+  - [X] change board size (for custom board size)
+- [X] view [4/4] [100%]
+  - [X] restart button
+  - [X] board view
+  - [X] randering board state
+  - [X] ckliakble div
+- [ ] create and setting up main function
+- [ ] timeout in core async
+  - [ ] dependencies
+  - [ ] require
+  - [ ] function usage

@@ -8,11 +8,18 @@
    game-db))
 
 (reg-event-db
+ ::restart-board
+ (fn [db]
+   (assoc db :board [["e" "e" "e"]
+                     ["e" "e" "e"]
+                     ["e" "e" "e"]])))
+
+(reg-event-db
  ::restart-game
  (fn [db]
-   (-> (assoc db :board [[:e :e :e]
-                         [:e :e :e]
-                         [:e :e :e]])
+   (-> (assoc db :board [["e" "e" "e"]
+                         ["e" "e" "e"]
+                         ["e" "e" "e"]])
        (#(assoc % :player-turn (game-db :player-turn))))))
 
 (reg-event-db
@@ -23,13 +30,13 @@
 (reg-event-db
  ::change-player-turn
  (fn [db]
-   (assoc db :player-turn (if (= :o (db :player-turn)) :x :o))))
+   (assoc db :player-turn (if (= "o" (db :player-turn)) "x" "o"))))
 
 (reg-event-db
  ::change-board-cell
  (fn [db [_ i j]]
    (-> (assoc-in db [:board i j] (db :player-turn))
-       (#(assoc % :player-turn (if (= :o (% :player-turn)) :x :o))))))
+       (#(assoc % :player-turn (if (= "o" (% :player-turn)) "x" "o"))))))
 
 (reg-event-db
  ::change-player-score
