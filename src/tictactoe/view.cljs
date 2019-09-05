@@ -2,8 +2,7 @@
   (:require [re-frame.core :refer [subscribe dispatch dispatch-sync]]
             [tictactoe.subs :as subs]
             [tictactoe.events :as events]
-            [tictactoe.dispatch-handler :as dh]
-            ))
+            [tictactoe.dispatch-handler :as dh]))
 (defn restart-game-view
   []
   [:div#restart
@@ -55,8 +54,8 @@
            (fn [[i j]] [:div
                        {:on-click (if (= "e" @(cell i j))
                                     #(do (dispatch-sync [::events/change-board-cell i j]) 
-                                         (cell-clicking i j))
-                                    #())}
+                                         (cell-clicking i j)))
+                        }
                        (when-not (= "e" @(cell i j)) @(cell i j))])
 
            (for [i (range size)
@@ -78,8 +77,7 @@
 
 (defn game-view []
   (let [game-status @(subscribe [::subs/game-status])]
-    (if (or (= game-status "o")
-            (= game-status "x") 
-            (= game-status "draw"))
-      [game-status-view] [board-view]) ))
+    (if (= game-status "playing")
+      [board-view]
+      [game-status-view])))
 
