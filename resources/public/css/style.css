@@ -22,7 +22,7 @@ body{
 #game-status{
     background: #3bbced;
 		padding: 15px;
-    height: calc(85px * 3);
+    height: calc(70px * 3);
     width: 930px;
     border: 4px solid green;
     margin: 0 auto;
@@ -47,4 +47,7 @@ h4 {
 #restart{
     margin:0 auto;
 }
-
+p {
+    font-size: 25px;
+    margin: 0 auto;
+}
