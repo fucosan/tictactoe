@@ -66,7 +66,9 @@
 
 (defn game-status-view
   []
-  [:div#game-status
+  [:div#game-status {:on-click #(do (dispatch [::events/restart-board])
+                                    (dispatch [::events/change-game-status "playing"]))
+                     }
    (let [st @(subscribe [::subs/game-status])]
      (cond
        (= "x" st) "player X WIN!!"
