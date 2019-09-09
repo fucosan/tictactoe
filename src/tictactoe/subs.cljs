@@ -17,10 +17,6 @@
  (fn [db [_ i j]]
    (get-in db [:board i j])))
 
-;(get-in tictactoe.db/game-db [:board 0 2])
-
-;@(re-frame.core/subscribe [::board-cell 1 1])
-
 (reg-sub
  ::player-turn
  (fn [db]
@@ -35,5 +31,3 @@
  ::game-status
  (fn [db]
    (db :game-status)))
-
-

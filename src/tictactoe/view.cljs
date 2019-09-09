@@ -3,6 +3,7 @@
             [tictactoe.subs :as subs]
             [tictactoe.events :as events]
             [tictactoe.dispatch-handler :as dh]))
+
 (defn restart-game-view
   []
   [:div#restart
@@ -10,7 +11,6 @@
     {:on-click #(do (dispatch [::events/restart-board])
                     (dispatch [::events/change-game-status "playing"]))}
     "restart game"]])
-
 
 (defn player-turn-view
   []

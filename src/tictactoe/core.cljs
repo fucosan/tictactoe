@@ -11,7 +11,6 @@
 (prn "HELLO tictactoe")
 
 
-
 (defn page []
   [:div
    [:h4 "tictactoe"]
@@ -19,9 +18,6 @@
    [view/player-turn-view]
    [view/restart-game-view]
    [view/game-view]])
-
-
-
 
 (dispatch [::events/intialize-game])
 (r/render [page]
